@@ -43,9 +43,6 @@
     {
       "name": "custom-hook",
       "path": "custom-hook"
-    },
-    {
-      "path": "lists_and_keys"
     }
   ],
   "files.watcherExclude": {
