@@ -8,9 +8,18 @@ body {
   background-color: #282c34;
   color: #FFFFFF;
   margin: 30px;
+  font-size: 50px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  font-size: 50px;
+}
+
+ol {
+  margin: 30px 50px;
 }

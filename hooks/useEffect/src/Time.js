@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const getTime = () => new Date().toLocaleTimeString();
 
@@ -12,7 +12,7 @@ const Timer = () => {
   return (
     <>
       <button onClick={toggleTime}>{showTime ? 'Hide' : 'Show'} time</button>
-      <input placeholder='Interval' value={interval} onChange={updateInterval} />
+      <input placeholder='Interval' value={interval} onChange={updateInterval} type="number" maxLength={5} />
       <br/>
       {showTime && <Time intervalTime={interval} />}
     </>
@@ -20,16 +20,7 @@ const Timer = () => {
 }
 
 const Time = ({ intervalTime }) => {
-  const [time, setTime] = useState(getTime());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(getTime());
-    }, intervalTime);
-
-    return () => clearInterval(interval);
-  }, [intervalTime]);
-
+  const [time] = useState(getTime());
   return time;
 };
 

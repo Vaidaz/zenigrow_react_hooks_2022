@@ -11,28 +11,50 @@ const TRANSLATIONS = {
   },
 };
 
-const TranslationsContext = createContext(TRANSLATIONS.en);
+const TranslationsContext = createContext();
 
-function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const onLanguageChange = (newLanguage) => setSelectedLanguage(newLanguage);
+const TranslationsContextProvider = ({ children }) => {
+  const setLanguage = (language) => {
+    setState({
+      ...state,
+      language,
+      translations: TRANSLATIONS[language],
+    });
+  }
+
+  const [state, setState] = useState({
+    translations: TRANSLATIONS.en,
+    language: 'en',
+    availableLanguages: ['en', 'lt'],
+    setLanguage,
+  });
 
   return (
-    <TranslationsContext.Provider value={TRANSLATIONS[selectedLanguage]}>
-      <LanguageSwitch language={selectedLanguage} onChange={onLanguageChange} />
+    <TranslationsContext.Provider value={state}>
+      {children}
+    </TranslationsContext.Provider>
+  );
+};
+
+function App() {
+  return (
+    <TranslationsContextProvider>
+      <LanguageSwitch />
       <br/>
       <Greeting />
-    </TranslationsContext.Provider>
+    </TranslationsContextProvider>
   );
 }
 
 function Greeting() {
-  const context = useContext(TranslationsContext);
-  return `${context.hello}. ${context.how_are_you}`;
+  const { translations } = useContext(TranslationsContext);
+  return `${translations.hello}. ${translations.how_are_you}`;
 }
 
-function LanguageSwitch({ language, onChange }) {
-  const handleChange = (e) => onChange(e.target.value);
+function LanguageSwitch() {
+  const { language, setLanguage } = useContext(TranslationsContext);
+
+  const handleChange = (e) => setLanguage(e.target.value);
 
   return (
     <select value={language} onChange={handleChange}>
