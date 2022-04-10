@@ -1,0 +1,59 @@
+{
+  "folders": [
+    {
+      "name": "hooks-useState",
+      "path": "hooks/useState"
+    },
+    {
+      "name": "hooks-useEffect",
+      "path": "hooks/useEffect"
+    },
+    {
+      "name": "hooks-useContext",
+      "path": "hooks/useContext"
+    },
+    {
+      "name": "hooks-useReducer",
+      "path": "hooks/useReducer"
+    },
+    {
+      "name": "hooks-useCallback",
+      "path": "hooks/useCallback"
+    },
+    {
+      "name": "hooks-useMemo",
+      "path": "hooks/useMemo"
+    },
+    {
+      "name": "hooks-useRef",
+      "path": "hooks/useRef"
+    },
+    {
+      "name": "hooks-useDeferredValue",
+      "path": "hooks/useDeferredValue"
+    },
+    {
+      "name": "hooks-useTransition",
+      "path": "hooks/useTransition"
+    },
+    {
+      "name": "hooks-useId",
+      "path": "hooks/useId"
+    },
+    {
+      "name": "custom-hook",
+      "path": "custom-hook"
+    },
+    {
+      "path": "lists_and_keys"
+    }
+  ],
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/public/*/**": true,
+    "*/**/node_modules/*/**": true,
+    "*/**/public/*/**": true,
+  }
+}
