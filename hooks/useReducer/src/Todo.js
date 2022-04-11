@@ -1,20 +1,15 @@
 import { useReducer } from 'react';
 
 const initialState = {
-  jobs: [
-    'Catch a pokemon',
-  ],
+  jobs: [],
   input: {
     value: '',
   }
-};
+}
 
-const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
-const ADD_JOB_TO_TODO_LIST = 'ADD_JOB_TO_TODO_LIST';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case CHANGE_INPUT_VALUE: {
+const reducer = (state, action) => {
+  switch(action.type) {
+    case 'changeTheInput': {
       return {
         ...state,
         input: {
@@ -23,33 +18,31 @@ function reducer(state, action) {
         }
       }
     }
-    case ADD_JOB_TO_TODO_LIST: {
-      const { input, jobs } = state;
-
-      if (!input.value) {
-        return state;
-      }
-
+    case 'addItemToTODO': {
       return {
         ...state,
-        input: {
-          ...state.input,
-          value: '',
-        },
         jobs: [
-          input.value,
-          ...jobs,
-        ],
+          ...state.jobs,
+          state.input.value,
+        ]
       }
     }
     default:
-      return state;
+      return state
   }
 }
 
 function Todo() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { jobs, input } = state;
+
+  const handleInputChange = (e) => {
+    dispatch({ type: 'changeTheInput', value: e.target.value });
+  };
+
+  const handleButtonClick = () => {
+    dispatch({ type: 'addItemToTODO' });
+  };
 
   return (
     <>
@@ -58,9 +51,9 @@ function Todo() {
         type="text"
         placeholder='Job'
         value={input.value}
-        onChange={(e) => dispatch({ type: CHANGE_INPUT_VALUE, value: e.target.value })}
+        onChange={handleInputChange}
       />
-      <button onClick={() => dispatch({ type: ADD_JOB_TO_TODO_LIST })}>
+      <button onClick={handleButtonClick}>
         Add
       </button>
       <ul>

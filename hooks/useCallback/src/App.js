@@ -4,27 +4,24 @@ function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  const handleFirstNameChange = (name) => setFirstName(name.toUpperCase());
-  const handleLastNameChange = (name) => setLastName(name.toUpperCase());
-
-  const memoizedSetFirstName = useCallback(handleFirstNameChange, []);
-  const memoizedSetLastName = useCallback(handleLastNameChange, []);
+  const handleFirstNameChange = useCallback((name) => {
+    return setFirstName(name.toUpperCase());
+  }, []);
+  const handleLastNameChange = useCallback((name) => setLastName(name.toUpperCase()), []);
 
   return (
     <>
       <MemoizedInput
         placeholder="First name"
-        onChange={memoizedSetFirstName}
+        onChange={handleFirstNameChange}
         value={firstName}
       />
       <br/>
       <MemoizedInput
         placeholder="Last name"
-        onChange={memoizedSetLastName}
+        onChange={handleLastNameChange}
         value={lastName}
       />
-      <br/>
-      <button>Add</button>
     </>
   );
 }

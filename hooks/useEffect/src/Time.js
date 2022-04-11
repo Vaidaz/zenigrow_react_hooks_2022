@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const getTime = () => new Date().toLocaleTimeString();
 
 const Timer = () => {
+
   const [showTime, setShowTime] = useState(false);
   const toggleTime = () => setShowTime(!showTime);
 
@@ -14,13 +15,23 @@ const Timer = () => {
       <button onClick={toggleTime}>{showTime ? 'Hide' : 'Show'} time</button>
       <input placeholder='Interval' value={interval} onChange={updateInterval} type="number" maxLength={5} />
       <br/>
-      {showTime && <Time intervalTime={interval} />}
+      {showTime && <Time delay={interval} />}
     </>
   )
 }
 
-const Time = ({ intervalTime }) => {
-  const [time] = useState(getTime());
+const Time = ({ delay }) => {
+  const [time, setTime] = useState(getTime());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('##', getTime());
+      setTime(getTime());
+    }, [delay]);
+
+    return () => clearInterval(interval);
+  }, [delay]);
+
   return time;
 };
 

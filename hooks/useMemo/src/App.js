@@ -20,7 +20,7 @@ function App() {
 }
 
 function Display({ primeNumberIndex }) {
-  const number = useMemo(() => findNthPrimeNumber(primeNumberIndex), [primeNumberIndex])
+  const number = useMemo(() => findNthPrimeNumber(primeNumberIndex), [primeNumberIndex]);
   const [savedNumbers, setSavedNumbers] = useState([]);
 
   return (

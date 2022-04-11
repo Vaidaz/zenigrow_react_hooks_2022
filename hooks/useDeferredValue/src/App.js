@@ -22,10 +22,10 @@ function App() {
 }
 
 const List = ({ pokemons }) => {
-  const deferedPokemons = useDeferredValue(pokemons);
+  const deferredPokemons = useDeferredValue(pokemons);
   return (
     <>
-      {deferedPokemons.map(pokemon => (
+      {deferredPokemons.map(pokemon => (
         <img key={pokemon.id} className="pokemon-img" src={pokemon.path} alt={pokemon.name} />
       ))}
     </>
